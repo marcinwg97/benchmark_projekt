@@ -10919,3 +10919,39 @@ a.text-dark:focus {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
+
+.status-block-box {
+  border: 1px solid #c8c8c8;
+    border-radius: 4px;
+    box-shadow: 0 2px 0 0 rgba(0,0,0,.1);
+    margin: 0 5px;
+    height: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+.status-block {
+    float: left;
+    height: 125px;
+    margin-bottom: 10px;
+    min-width: 200px;
+    width: 25%;
+}
+
+.block-label {
+  color: #8191a5;
+    margin-top: 25px;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.block-field {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  vertical-align: bottom;
+}
+
+.big {
+  font-size: 36px;
+}
