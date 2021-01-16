@@ -102,13 +102,18 @@ foreach($matches as $m)
    	public function benchmark(Request $request) {
     
 	$page = $request->page;
+	//Usuwanie http, https i www
+	$source = ['https://www.','https://','http://www.','http://'];
+	$replace = ['','','',''];
+	$page_trunc = str_replace($source,$replace,$page);
+	//
 	$time = $this->getLoadPage(NULL, $page);
 	$request = $this->getTimeOfRequest($page);
 	$size = $this->getSizeOfPage($page);
 	$benchmark = new Benchmark;
 	$benchmark->date = date('Y-m-d');
 	$benchmark->load_time = $time;
-	$benchmark->page_name = $page;
+	$benchmark->page_name = $page_trunc;
 	$benchmark->request_time = $request;
 	$benchmark->size_page = $size; 
 	if(Auth::user()) {
@@ -138,7 +143,7 @@ foreach($matches as $m)
 
 	$results_ranking = Benchmark::orderBy('load_time','asc')->take(10)->get();
 
-    return view('results')->with(['time' => $time, 'size' => $size, 'request' => $request, 'chartAvg' => $chartAvg, 'percentage' => $percentage, 'page' => $page, 'results_ranking' => $results_ranking]);
+    return view('results')->with(['time' => $time, 'size' => $size, 'request' => $request, 'chartAvg' => $chartAvg, 'percentage' => $percentage, 'page' => $page, 'results_ranking' => $results_ranking, 'benchmark' => $benchmark]);
    }
 
    
