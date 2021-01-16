@@ -53,7 +53,7 @@ class BenchmarkController extends Controller
 		curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
 		$subject = curl_exec($curl); 
 		//get the download size of page 
-		return curl_getinfo($curl, CURLINFO_SIZE_DOWNLOAD);
+		return curl_getinfo($curl, CURLINFO_CONTENT_LENGTH_DOWNLOAD);
 	//	print("Download size: " . curl_getinfo($curl, CURLINFO_SIZE_DOWNLOAD) .'<br>');
 
 /* preg_match_all('/(?:src=)"([^"]*)"/m', $subject, $matchessrc);
@@ -95,7 +95,7 @@ foreach($matches as $m)
 	
 		$subject = curl_exec($curl); 
 		//get the download size of page 
-		return curl_getinfo($curl, CURLINFO_TOTAL_TIME);
+		return curl_getinfo($curl, CURLINFO_SIZE_DOWNLOAD);
 
 	}
 
@@ -120,9 +120,9 @@ foreach($matches as $m)
 		
 	$chartAvg = new UserChart;
 	$chartAvg->labels(['Średnia', $page]);
-	$chartAvg->dataset('Czas ładowania', 'bar', [$benchmark_avg, $time])
+	$chartAvg->dataset('Czas ładowania w ms', 'bar', [$benchmark_avg, $time])
             ->color("black")
-            ->backgroundcolor("lightblue")
+            ->backgroundcolor("#DAC2FF")
             ->fill(false)
 			->linetension(0.5);
 	
@@ -136,7 +136,9 @@ foreach($matches as $m)
 	$percentage = ($cnt / $benchmark_count->count()) * 100;
 	$percentage = 100 - $percentage;
 
-    return view('results')->with(['time' => $time, 'size' => $size, 'request' => $request, 'chartAvg' => $chartAvg, 'percentage' => $percentage]);
+	$results_ranking = Benchmark::orderBy('load_time','asc')->take(10)->get();
+
+    return view('results')->with(['time' => $time, 'size' => $size, 'request' => $request, 'chartAvg' => $chartAvg, 'percentage' => $percentage, 'results_ranking' => $results_ranking]);
    }
 
    

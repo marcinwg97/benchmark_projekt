@@ -32,9 +32,9 @@ class HomeController extends Controller
         $chartTop = new UserChart;
       
         $chartTop->labels($labels);
-        $chartTop->dataset('Czas ładowania', 'bar', $data)
+        $chartTop->dataset('Czas ładowania w ms', 'bar', $data)
             ->color("black")
-            ->backgroundcolor("lightblue")
+            ->backgroundcolor("#DAC2FF")
             ->fill(false)
             ->linetension(0.5);
 
