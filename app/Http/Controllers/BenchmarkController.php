@@ -53,7 +53,7 @@ class BenchmarkController extends Controller
 		curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
 		$subject = curl_exec($curl); 
 		//get the download size of page 
-		return curl_getinfo($curl, CURLINFO_CONTENT_LENGTH_DOWNLOAD);
+		return curl_getinfo($curl, CURLINFO_SIZE_DOWNLOAD);
 	//	print("Download size: " . curl_getinfo($curl, CURLINFO_SIZE_DOWNLOAD) .'<br>');
 
 /* preg_match_all('/(?:src=)"([^"]*)"/m', $subject, $matchessrc);
@@ -95,7 +95,7 @@ foreach($matches as $m)
 	
 		$subject = curl_exec($curl); 
 		//get the download size of page 
-		return curl_getinfo($curl, CURLINFO_SIZE_DOWNLOAD);
+		return curl_getinfo($curl, CURLINFO_TOTAL_TIME);
 
 	}
 
