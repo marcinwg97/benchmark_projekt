@@ -12,7 +12,7 @@ class UserController extends Controller
     public function index()
     {
         $benchmarks = Benchmark::where('user_id', Auth::user()->id)->get();
-        return view('panel', compact('chart'));
+        return view('panel')->with(['benchmarks' => $benchmarks]);
     }
 
     public function store(Request $request)
@@ -25,7 +25,7 @@ class UserController extends Controller
         $date_from = $request->date_from;
         $date_to = $request->date_to;
         $benchmarks = Benchmark::where('user_id', Auth::user()->id)->where('date', '<=', $request->date_to)->where('date', '>=', $request->date_from)->get();
-        return view('panel')->with(['date_from' => $request->date_from, 'date_to' => $request->date_to]);
+        return view('panel')->with(['date_from' => $request->date_from, 'date_to' => $request->date_to, 'benchmarks' => $benchmarks]);
     }
    
 }

@@ -125,7 +125,7 @@ foreach($matches as $m)
 		
 	$chartAvg = new UserChart;
 	$chartAvg->labels(['Średnia', $page]);
-	$chartAvg->dataset('Czas ładowania w ms', 'bar', [$benchmark_avg, $time])
+	$chartAvg->dataset('Czas ładowania (s)', 'bar', [$benchmark_avg, $time])
             ->color("black")
             ->backgroundcolor("#DAC2FF")
             ->fill(false)

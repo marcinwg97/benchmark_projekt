@@ -3,9 +3,10 @@
 @section('content')
 
 <div class="container">
-<div class="row mx-0 mb-0 mt-3">
+    <div class="row mx-0 mb-0 mt-3">
         <div class="col-12">
-            <h4 class="mb-0 text-center">Panel</h4>
+            <h1 class="mb-0 text-center lead">Panel</h1>
+            <hr>
         </div>
         <form class="col-12 px-0" method="post" action="{{ route('panel.store') }}">
             {{ csrf_field() }}
@@ -32,17 +33,34 @@
                     </div>
                 </div>
                 <div class="col-12 my-2 px-0 px-lg-3 text-right">
-                    <button type="submit" class="btn btn-success">Filtruj</button>
+                    <button type="submit" class="btn btn-success" style="background-color: rgb(121, 82, 179); !important; border-color: rgb(121, 82, 179);">Filtruj</button>
                 </div>
             </div>
         </form>
     </div>
-    <div class="row justify-content-center">
-<div style="width: 80%;margin: 0 auto;">
-            {!! $chart->container() !!}
+    <div class="row mt-3">
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Nazwa strony</th>
+                        <th>Czas ładowania</th>
+                        <th>Czas odpowiedzi</th>
+                        <th>Rozmiar strony</th>
+                    </tr>
+                </thead>
+                <tbody>
+                @foreach($benchmarks as $benchmark)
+                    <tr>
+                    <td>{{$benchmark->page_name}}</td>
+                    <td>{{$benchmark->load_time}} s</td>
+                    <td>{{$benchmark->request_time}} s</td>
+                    <td>{{$benchmark->size_page}} B</td>
+                </tr>
+                @endforeach
+                </tbody>
+            </table>
         </div>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js" charset="utf-8"></script>
-        {!! $chart->script() !!}
-</div>
-</div>
+    </div>
+</div>    
 @endsection
