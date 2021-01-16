@@ -138,7 +138,7 @@ foreach($matches as $m)
 
 	$results_ranking = Benchmark::orderBy('load_time','asc')->take(10)->get();
 
-    return view('results')->with(['time' => $time, 'size' => $size, 'request' => $request, 'chartAvg' => $chartAvg, 'percentage' => $percentage, 'results_ranking' => $results_ranking]);
+    return view('results')->with(['time' => $time, 'size' => $size, 'request' => $request, 'chartAvg' => $chartAvg, 'percentage' => $percentage, 'results_ranking' => $results_ranking, 'benchmark' => $benchmark]);
    }
 
    

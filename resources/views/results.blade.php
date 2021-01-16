@@ -23,9 +23,13 @@
                 </thead>
                 <tbody>
                     @foreach ($results_ranking as $page)
+                        @if($benchmark->id == $page->id)
+                        <tr style="background-color: #A353C9; color: white">
+                        @else
                         <tr>
+                        @endif
                             <th>{{$loop->iteration}}</th>
-                            <td class="text-left">{{ $page->page_name}}</td>
+                            <td class="text-left">{{ str_replace('https://','',$page->page_name}})</td>
                             <td>{{ $page->load_time}}</td>
                         </tr>
                     @endforeach
