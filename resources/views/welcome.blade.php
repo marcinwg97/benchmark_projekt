@@ -26,10 +26,10 @@
             </div>
         </div>
         <div class="row">
-        <div style="width: 100%;margin: 0 auto;">
-            {!! $chartTop->container() !!}
+            <div style="width: 100%;margin: 0 auto;">
+                {!! $chartTop->container() !!}
+            </div>
         </div>
-        </div>
-        {!! $chartTop->script() !!}
+        
 </div>
 @endsection

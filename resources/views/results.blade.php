@@ -18,7 +18,7 @@
                     <div class="status-block">
                         <div class="status-block-box">
                             <div class="block-label">Rozmiar strony</div>
-                            <div class="block-field"><span class="big">{!! isset($size) ? $size : "" !!}</span><span> B</span></div>
+                            <div class="block-field"><span class="big">{!! isset($size) ? $size : "" !!}</span><span> kB</span></div>
                         </div>
                     </div>
                 </div>
@@ -43,7 +43,6 @@
         <div class="px-3" style="width: 50%;margin: 0 auto;">
             {!! $chartAvg->container() !!}
         </div>
-        {!! $chartAvg->script() !!}
         <div class="table-responsive ranking px-3">
             <table class="table table-striped table-hover table-sm">
                 <thead>

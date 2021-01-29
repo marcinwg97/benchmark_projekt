@@ -20,6 +20,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js" charset="utf-8" type="application/javascript"> </script>   
 </head>
 <style>
 body{
@@ -117,7 +118,13 @@ body{
         <main class="mb-3">
             @yield('content')
         </main>
-    </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js" charset="utf-8" type="application/javascript"></script>    
+    </div> 
 </body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js" charset="utf-8"></script>
+@if(isset($chartTop))
+{!! $chartTop->script() !!}
+@endif
+@if(isset($chartAvg))
+{!! $chartAvg->script() !!}
+@endif
 </html>

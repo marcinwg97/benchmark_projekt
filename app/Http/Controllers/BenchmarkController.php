@@ -26,18 +26,27 @@ class BenchmarkController extends Controller
 			),
 		);  
 			#check loadtime
-			$total = 0;
-			$start = microtime(true);
+
+			$total_page = 0;
+			$start1 = microtime(true);
 			$page = file_get_contents($page, false, stream_context_create($arrContextOptions));
-			$total += microtime(true)-$start;
-				   preg_match_all('/src=(["\']?)([^\1]+?)\1/m', $page, $result, PREG_PATTERN_ORDER);
+			$total_page +=  microtime(true)-$start1;
+				   preg_match_all('/(?<!_)src=([\'"])?(.*?)\\1/', $page, $result, PREG_PATTERN_ORDER);
 				$result = $result[2];
-				   foreach($result as $src) {
-					   $start = microtime(true);
+				$res = array_unique($result);
+			//	dd($res);
+				   $max = 0;
+				   foreach($res as $src) {
+					   $start2 = microtime(true);
 					   @file_get_contents($src);
-					   $total += microtime(true)-$start;
+					   $total_time = microtime(true)-$start2;
+					   if($total_time < 2) {
+							if($max < $total_time) {
+								$max = $total_time;
+							}
+						}
 				   }
-				   
+				$total = $max + $total_page;
 				$out = substr($total, 0, 6);
 		
 		return $out;
@@ -53,7 +62,8 @@ class BenchmarkController extends Controller
 		curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
 		$subject = curl_exec($curl); 
 		//get the download size of page 
-		return curl_getinfo($curl, CURLINFO_SIZE_DOWNLOAD);
+		return substr(curl_getinfo($curl, CURLINFO_SIZE_DOWNLOAD) / 1024, 0, 6);
+		
 	//	print("Download size: " . curl_getinfo($curl, CURLINFO_SIZE_DOWNLOAD) .'<br>');
 
 /* preg_match_all('/(?:src=)"([^"]*)"/m', $subject, $matchessrc);

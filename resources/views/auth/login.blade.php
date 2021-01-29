@@ -39,7 +39,7 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary"style="background-color: rgb(121, 82, 179); !important; border-color: rgb(121, 82, 179);">
+                                <button type="submit" class="btn btn-primary" style="background-color: rgb(121, 82, 179); !important; border-color: rgb(121, 82, 179);">
                                     {{ __('Zaloguj') }}
                                 </button>
                             </div>
