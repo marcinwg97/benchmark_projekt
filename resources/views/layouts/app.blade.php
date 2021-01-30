@@ -127,4 +127,7 @@ body{
 @if(isset($chartAvg))
 {!! $chartAvg->script() !!}
 @endif
+@if(isset($chartUser))
+{!! $chartUser->script() !!}
+@endif
 </html>

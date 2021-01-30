@@ -38,6 +38,11 @@
             </div>
         </form>
     </div>
+    <div class="row">
+        <div style="width: 100%;margin: 0 auto;">
+            {!! $chartUser->container() !!}
+        </div>
+    </div>
     <div class="row mt-3">
         <div class="table-responsive">
             <table class="table">
@@ -55,7 +60,7 @@
                     <td>{{$benchmark->page_name}}</td>
                     <td>{{$benchmark->load_time}} s</td>
                     <td>{{$benchmark->request_time}} s</td>
-                    <td>{{$benchmark->size_page}} B</td>
+                    <td>{{$benchmark->size_page}} kB</td>
                 </tr>
                 @endforeach
                 </tbody>
