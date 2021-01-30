@@ -36,8 +36,8 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'date_from' => 'nullable|date',
-            'date_to' => 'nullable|date'
+            'date_from' => 'date',
+            'date_to' => 'date'
         ]);
 
         $date_from = $request->date_from;
